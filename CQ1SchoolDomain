@@ -1,0 +1,10 @@
+# CQ1. What is the school approval rate per geographic region of a city? #
+SELECT ?neig (AVG(?app) AS ?apByNeig)
+WHERE {
+   ?sc rdf:type lgsim:School .
+   ?sc lgsim:locatedAt ?neig .
+   ?sc lgsim:hasTeachingLevel ?tl .
+   ?tl lgsim:hasTeachingModality ?tm .
+   ?tm lgsim:approvedTM ?app
+}
+GROUP BY ?neig
