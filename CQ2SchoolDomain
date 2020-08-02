@@ -1,0 +1,14 @@
+# CQ2. What is the average number of students per curricular component in a given school? #
+SELECT ?sc ?disc (AVG(?gr) AS ?grByDisc)
+WHERE {
+   ?sc rdf:type lgsim:School .
+   ?sc lgsim:hasTeachingLevel ?tl .
+   ?tl lgsim:hasTeachingModality ?tm .
+   ?tm lgsim:hasSeries ?ser.
+   ?ser lgsim:hasClass ?class .
+   ?class lgsim:hasStudent ?st .
+   ?st lgsim:hasDiscResults ?res .
+   ?res lgsim:grade ?gr .
+  ?res lgsim:relatedToDisc ?disc
+}
+GROUP BY ?sc ?disc
